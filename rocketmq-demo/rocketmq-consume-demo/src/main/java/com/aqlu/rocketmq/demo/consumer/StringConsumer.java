@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
  */
 @Slf4j
 @Service
-@RocketMQMessageListener(topic = "string-topic", consumerGroup = "string_consumer")
+@RocketMQMessageListener(topic = "string-topic", selectorExpress = "message" ,consumerGroup = "string_consumer")
 public class StringConsumer implements RocketMQListener<String> {
     @Override
     public void onMessage(String message) {

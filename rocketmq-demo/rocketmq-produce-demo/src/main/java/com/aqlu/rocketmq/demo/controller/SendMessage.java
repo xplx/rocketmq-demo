@@ -15,14 +15,14 @@ public class SendMessage {
     private RocketMQTemplate rocketMQTemplate;
     @RequestMapping("/msg")
     public String SendMessage(){
-        rocketMQTemplate.sendOneWay("string-topic", "Hello, World!");
+        rocketMQTemplate.sendOneWay("bingo-orderDelivery-com-topic:beeActiveDelivery", "Hello, World!");
         return "hello world";
     }
 
     @RequestMapping("/objectMsg")
     public String SendObject(){
         OrderPaidEvent orderPaidEvent = new OrderPaidEvent("1",new BigDecimal("88.00"));
-        rocketMQTemplate.sendOneWay("order-paid-topic", orderPaidEvent);
+        rocketMQTemplate.sendOneWay("bingo-purchaseOrder-com-topic:OrderDelivery", orderPaidEvent);
         return "success";
     }
     @RequestMapping("/tag0")
