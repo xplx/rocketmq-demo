@@ -15,7 +15,7 @@ public class SendMessage {
     private RocketMQTemplate rocketMQTemplate;
     @RequestMapping("/msg")
     public String SendMessage(){
-        rocketMQTemplate.sendOneWay("bingo-orderDelivery-com-topic:beeActiveDelivery", "Hello, World!");
+        rocketMQTemplate.sendOneWay("string-topic:message", "Hello, World!");
         return "hello world";
     }
 
