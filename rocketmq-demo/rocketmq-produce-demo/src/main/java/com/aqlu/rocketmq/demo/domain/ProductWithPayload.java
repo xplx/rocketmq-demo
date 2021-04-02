@@ -15,20 +15,40 @@
  * limitations under the License.
  */
 
-package com.aqlu.rocketmq.demo.consumer;
+package com.aqlu.rocketmq.demo.domain;
 
-import org.apache.rocketmq.spring.annotation.RocketMQMessageListener;
-import org.apache.rocketmq.spring.core.RocketMQListener;
-import org.springframework.stereotype.Service;
+public class ProductWithPayload<T> {
+    private String productName;
+    private T payload;
 
-/**
- * StringConsumer
- */
-@Service
-@RocketMQMessageListener(topic = "${demo.rocketmq.topic}", consumerGroup = "string_consumer", selectorExpression = "${demo.rocketmq.tag}")
-public class StringConsumer implements RocketMQListener<String> {
-    @Override
-    public void onMessage(String message) {
-        System.out.printf("------- StringConsumer received: %s \n", message);
+    public ProductWithPayload() {
+    }
+
+    public ProductWithPayload(String productName, T payload) {
+        this.productName = productName;
+        this.payload = payload;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public T getPayload() {
+        return payload;
+    }
+
+    public void setPayload(T payload) {
+        this.payload = payload;
+    }
+
+    @Override public String toString() {
+        return "ProductWithPayload{" +
+            "productName='" + productName + '\'' +
+            ", payload=" + payload +
+            '}';
     }
 }

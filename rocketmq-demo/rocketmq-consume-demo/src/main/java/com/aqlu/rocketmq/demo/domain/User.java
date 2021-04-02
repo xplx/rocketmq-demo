@@ -15,20 +15,35 @@
  * limitations under the License.
  */
 
-package com.aqlu.rocketmq.demo.consumer;
+package com.aqlu.rocketmq.demo.domain;
 
-import org.apache.rocketmq.spring.annotation.RocketMQMessageListener;
-import org.apache.rocketmq.spring.core.RocketMQListener;
-import org.springframework.stereotype.Service;
+public class User {
+    private String userName;
+    private Byte userAge;
 
-/**
- * StringConsumer
- */
-@Service
-@RocketMQMessageListener(topic = "${demo.rocketmq.topic}", consumerGroup = "string_consumer", selectorExpression = "${demo.rocketmq.tag}")
-public class StringConsumer implements RocketMQListener<String> {
+    public String getUserName() {
+        return userName;
+    }
+
+    public User setUserName(String userName) {
+        this.userName = userName;
+        return this;
+    }
+
+    public Byte getUserAge() {
+        return userAge;
+    }
+
+    public User setUserAge(Byte userAge) {
+        this.userAge = userAge;
+        return this;
+    }
+
     @Override
-    public void onMessage(String message) {
-        System.out.printf("------- StringConsumer received: %s \n", message);
+    public String toString() {
+        return "User{" +
+            "userName='" + userName + '\'' +
+            ", userAge=" + userAge +
+            '}';
     }
 }

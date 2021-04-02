@@ -22,13 +22,13 @@ import org.apache.rocketmq.spring.core.RocketMQListener;
 import org.springframework.stereotype.Service;
 
 /**
- * StringConsumer
+ * StringTransactionalConsumer
  */
 @Service
-@RocketMQMessageListener(topic = "${demo.rocketmq.topic}", consumerGroup = "string_consumer", selectorExpression = "${demo.rocketmq.tag}")
-public class StringConsumer implements RocketMQListener<String> {
+@RocketMQMessageListener(topic = "${demo.rocketmq.transTopic}", consumerGroup = "string_trans_consumer")
+public class StringTransactionalConsumer implements RocketMQListener<String> {
     @Override
     public void onMessage(String message) {
-        System.out.printf("------- StringConsumer received: %s \n", message);
+        System.out.printf("------- StringTransactionalConsumer received: %s \n", message);
     }
 }

@@ -17,18 +17,19 @@
 
 package com.aqlu.rocketmq.demo.consumer;
 
+import com.aqlu.rocketmq.demo.domain.User;
 import org.apache.rocketmq.spring.annotation.RocketMQMessageListener;
 import org.apache.rocketmq.spring.core.RocketMQListener;
 import org.springframework.stereotype.Service;
 
 /**
- * StringConsumer
+ * RocketMQMessageListener
  */
 @Service
-@RocketMQMessageListener(topic = "${demo.rocketmq.topic}", consumerGroup = "string_consumer", selectorExpression = "${demo.rocketmq.tag}")
-public class StringConsumer implements RocketMQListener<String> {
+@RocketMQMessageListener(topic = "${demo.rocketmq.topic.user}", consumerGroup = "user_consumer")
+public class UserConsumer implements RocketMQListener<User> {
     @Override
-    public void onMessage(String message) {
-        System.out.printf("------- StringConsumer received: %s \n", message);
+    public void onMessage(User message) {
+        System.out.printf("######## user_consumer received: %s ; age: %s ; name: %s \n", message, message.getUserAge(), message.getUserName());
     }
 }
